@@ -5,7 +5,9 @@ const app = express();
 // const router = express.Router();
 const port = 5000;
 
+// this removes any CORS issues
 app.use(cors());
+// telling express to use json
 app.use(express.json());
 
 // app.use(
