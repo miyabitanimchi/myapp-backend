@@ -77,6 +77,17 @@ class SimpleCrudDB {
 
   flushDB() {
     // flush the inmemoryDatabase to disk (ie: save the database to disk)
+    this.fs.writeFile(
+      "./db.json",
+      JSON.stringify(this.inMemoryDatabase),
+      (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("file written successfully!");
+        }
+      }
+    );
   }
 
   reloadDB() {
@@ -89,6 +100,7 @@ let db = new SimpleCrudDB("./db.json");
 const registerUser = (username, password) => {
   db.Read(username);
   db.Create(username, password);
+  db.flushDB();
 };
 
 const deleteUser = (username) => {
