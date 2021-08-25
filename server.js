@@ -81,14 +81,14 @@ app.use(
 // after user gets authorized, send logiin data to the server
 app.put("/signin", async (req, res, next) => {
   console.log("userinfo sent");
-  res.writeHead(200, {
-    "Content-Type": "application/json",
-  });
+
   // info from client
   let param = {
-    username: req.body.loginUserInfo.username,
-    password: req.body.loginUserInfo.password,
+    username: req.body.username,
+    password: req.body.password,
   };
+
+  console.log(req);
 
   if (param.username === "superMiyabi" && param.password === "supersecret") {
     res.send({
